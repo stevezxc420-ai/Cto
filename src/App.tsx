@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
+import APIConnections from './pages/APIConnections';
 
 import './index.css';
 
@@ -20,6 +21,7 @@ const App: React.FC = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={<Users />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/api-connections" element={<APIConnections />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
