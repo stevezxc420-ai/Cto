@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../components/Layout';
 
 const Dashboard: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Dashboard - API Analytics Platform';
+  }, []);
+
   return (
     <Layout>
       <div className="space-y-6">
