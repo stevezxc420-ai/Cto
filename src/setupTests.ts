@@ -3,3 +3,16 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+// Recharts relies on ResizeObserver in ResponsiveContainer.
+class ResizeObserver {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  observe() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  unobserve() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  disconnect() {}
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(global as any).ResizeObserver = ResizeObserver;
