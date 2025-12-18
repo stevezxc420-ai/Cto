@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../components/Layout';
 
 const Users: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Users - API Analytics Platform';
+  }, []);
+
   const users = [
     {
       id: 1,

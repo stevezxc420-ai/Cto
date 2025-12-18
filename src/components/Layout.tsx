@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import { isAuthenticated } from '../lib/token';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,12 +9,15 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, showSidebar = true }) => {
+  const authenticated = isAuthenticated();
+  const shouldShowSidebar = showSidebar && authenticated;
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Header />
       <div className="flex">
-        {showSidebar && <Sidebar />}
-        <main className={`flex-1 ${showSidebar ? '' : 'w-full'}`}>
+        {shouldShowSidebar && <Sidebar />}
+        <main className={`flex-1 ${shouldShowSidebar ? '' : 'w-full'}`}>
           <div className="p-6">
             {children}
           </div>

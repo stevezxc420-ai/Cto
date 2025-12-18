@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../components/Layout';
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    document.title = 'Home - API Analytics Platform';
+  }, []);
+
   return (
     <Layout>
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Welcome to MyApp
+            Welcome to API Analytics Platform
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
-            Your React frontend foundation is ready with TypeScript, routing, Tailwind CSS, and dark mode support.
+            Track, analyze, and optimize your API performance with powerful analytics and insights.
           </p>
         </div>
 

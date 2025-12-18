@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import { useTheme } from '../hooks/useTheme';
 
@@ -11,6 +11,10 @@ const Settings: React.FC = () => {
     language: 'en',
     timezone: 'UTC',
   });
+
+  useEffect(() => {
+    document.title = 'Settings - API Analytics Platform';
+  }, []);
 
   const handleSettingChange = (key: string, value: boolean | string) => {
     setSettings(prev => ({
