@@ -6,6 +6,8 @@ const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
+  const appName = process.env.REACT_APP_APP_NAME || 'MyApp';
+
   const isActive = (path: string) => {
     return location.pathname === path;
   };
@@ -16,9 +18,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                MyApp
-              </h1>
+              <h1 className="text-xl font-bold text-gray-900 dark:text-white">{appName}</h1>
             </Link>
           </div>
           

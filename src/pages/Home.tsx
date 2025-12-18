@@ -2,12 +2,14 @@ import React from 'react';
 import Layout from '../components/Layout';
 
 const Home: React.FC = () => {
+  const appName = process.env.REACT_APP_APP_NAME || 'MyApp';
+
   return (
     <Layout>
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Welcome to MyApp
+            Welcome to {appName}
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-400">
             Your React frontend foundation is ready with TypeScript, routing, Tailwind CSS, and dark mode support.

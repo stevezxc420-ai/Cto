@@ -7,8 +7,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
-
-import './index.css';
+import Login from './pages/Login';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +16,7 @@ const App: React.FC = () => {
         <div className="App">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/users" element={<Users />} />
             <Route path="/settings" element={<Settings />} />
