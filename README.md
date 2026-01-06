@@ -1,58 +1,52 @@
-# MyApp Frontend (React + TypeScript)
+# API Analytics Platform
 
-Production-ready React 19 + TypeScript frontend with Tailwind CSS, routing, dark mode, and an Axios API client with JWT handling.
+Full-stack platform with a React frontend and Node.js Express backend.
 
-## Prerequisites
+## Project Structure
 
-- Node.js 16+ (recommended 18+)
-- npm (comes with Node)
+- `src/` - Backend and Frontend source code
+- `public/` - Static assets for frontend
+- `docs/` - Documentation
 
 ## Setup
 
-1. Install dependencies:
+### Prerequisites
 
-```bash
-npm install
-```
+- Node.js 18+
+- npm
+- Docker (optional, for database)
+
+### Installation
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
 2. Configure environment variables:
+   ```bash
+   cp .env.example .env
+   ```
 
+### Running the application
+
+#### Backend
 ```bash
-cp .env.example .env.local
+npm run server:dev
 ```
+Defaults to http://localhost:3000
 
-3. Start the dev server:
-
+#### Frontend
 ```bash
 npm start
 ```
+Defaults to http://localhost:3001 (if 3000 is taken by backend)
 
-Open http://localhost:3000
+### Scripts
 
-## Environment variables
-
-Create React App only exposes variables prefixed with `REACT_APP_`.
-
-| Variable | Required | Default | Description |
-|---|---:|---|---|
-| `REACT_APP_API_URL` | no | `http://localhost:8000/api` | Backend API base URL |
-| `REACT_APP_API_TIMEOUT` | no | `10000` | Axios request timeout (ms) |
-| `REACT_APP_TOKEN_KEY` | no | `auth_token` | localStorage key for persisted auth |
-| `REACT_APP_APP_NAME` | no | `MyApp` | Display name |
-| `REACT_APP_VERSION` | no | `1.0.0` | Display version |
-
-## Scripts
-
-- `npm start` - start dev server
-- `npm test` - run unit tests
-- `npm run build` - production build
-
-## API documentation
-
-See [`docs/API.md`](./docs/API.md) for the endpoints and payloads expected by the frontend.
-
-## Security notes
-
-- Do not commit `.env` / `.env.local` files with real secrets.
-- JWT expiration is checked locally (via `expiresAt` or JWT `exp`) and also handled on `401` responses.
-- React escapes rendered values by default; avoid using `dangerouslySetInnerHTML` with untrusted content.
+- `npm start` - Start frontend development server
+- `npm run server:dev` - Start backend development server
+- `npm run build` - Build frontend for production
+- `npm run server:build` - Build backend (TypeScript)
+- `npm test` - Run frontend tests
+- `npm run typecheck` - Run backend type checks

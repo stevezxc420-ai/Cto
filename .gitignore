@@ -132,3 +132,6 @@ temp/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Docker
+**/.docker
