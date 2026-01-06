@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dependencies
 node_modules/
 /.pnp
@@ -135,3 +136,15 @@ Thumbs.db
 
 # Docker
 **/.docker
+=======
+node_modules/
+dist/
+.env
+*.log
+.DS_Store
+coverage/
+.vscode/
+.idea/
+*.swp
+*.swo
+>>>>>>> origin/feat-api-credentials-secure-store
