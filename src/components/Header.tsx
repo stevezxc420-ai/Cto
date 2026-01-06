@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
+import { useAuth } from '../contexts/AuthContext';
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const { isAuth, user, logout } = useAuth();
   const location = useLocation();
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const appName = process.env.REACT_APP_APP_NAME || 'MyApp';
 
@@ -34,26 +37,30 @@ const Header: React.FC = () => {
               >
                 Home
               </Link>
-              <Link
-                to="/dashboard"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive('/dashboard') 
-                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                }`}
-              >
-                Dashboard
-              </Link>
-              <Link
-                to="/settings"
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive('/settings') 
-                    ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                }`}
-              >
-                Settings
-              </Link>
+              {isAuth && (
+                <>
+                  <Link
+                    to="/dashboard"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive('/dashboard') 
+                        ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
+                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                    }`}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/settings"
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive('/settings') 
+                        ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20' 
+                        : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+                    }`}
+                  >
+                    Settings
+                  </Link>
+                </>
+              )}
             </nav>
             
             <button
@@ -71,6 +78,58 @@ const Header: React.FC = () => {
                 </svg>
               )}
             </button>
+
+            {isAuth ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+                    {user?.name?.charAt(0).toUpperCase() || 'U'}
+                  </div>
+                </button>
+                
+                {showUserMenu && (
+                  <>
+                    <div 
+                      className="fixed inset-0 z-10" 
+                      onClick={() => setShowUserMenu(false)}
+                    ></div>
+                    <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-20">
+                      <div className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">{user?.name}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user?.email}</p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setShowUserMenu(false);
+                          logout();
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      >
+                        Sign out
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <Link
+                  to="/login"
+                  className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+                >
+                  Sign up
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

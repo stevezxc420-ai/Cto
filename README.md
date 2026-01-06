@@ -2,16 +2,10 @@
 
 A comprehensive platform for API analytics, cost management, and credential storage.
 
-## Project Structure
-
-- `src/` - Backend (Node.js/TypeScript) and Frontend (React/TypeScript) source code
-- `public/` - Static assets for frontend
-- `docs/` - Documentation
-- Python Backend (FastAPI) - Specialized cost analytics service
-
 ## Features
 
 - ✅ **React Frontend**: Modern dashboard with dark mode support
+- ✅ **Authentication**: Complete login/signup system with JWT and "Remember Me"
 - ✅ **Node.js Backend**: User auth, API credential management, and integration framework
 - ✅ **Python Analytics Service**: AI-powered cost analytics, anomaly detection, and optimization recommendations
 - ✅ **Secure Credential Store**: AES-256-GCM encryption for API keys
@@ -71,3 +65,14 @@ Defaults to http://localhost:3001
 - `npm run server:build` - Build Node.js backend (TypeScript)
 - `npm test` - Run frontend tests
 - `npm run server:db:migrate` - Run Prisma migrations
+
+## Authentication System
+
+- **`/login`** - User login with email/password and "remember me" option
+- **`/signup`** - New user registration with validation
+- **`/forgot-password`** - Password reset interface (UI only)
+
+The following routes require authentication:
+- `/dashboard`
+- `/users`
+- `/settings`
