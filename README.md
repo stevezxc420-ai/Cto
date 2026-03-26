@@ -1,58 +1,78 @@
-# MyApp Frontend (React + TypeScript)
+# API Analytics & Cost Management Platform
 
-Production-ready React 19 + TypeScript frontend with Tailwind CSS, routing, dark mode, and an Axios API client with JWT handling.
+A comprehensive platform for API analytics, cost management, and credential storage.
 
-## Prerequisites
+## Features
 
-- Node.js 16+ (recommended 18+)
-- npm (comes with Node)
+- ✅ **React Frontend**: Modern dashboard with dark mode support
+- ✅ **Authentication**: Complete login/signup system with JWT and "Remember Me"
+- ✅ **Node.js Backend**: User auth, API credential management, and integration framework
+- ✅ **Python Analytics Service**: AI-powered cost analytics, anomaly detection, and optimization recommendations
+- ✅ **Secure Credential Store**: AES-256-GCM encryption for API keys
+- ✅ **Database Integration**: Support for PostgreSQL (Prisma/Sequelize) and SQLite
 
 ## Setup
 
-1. Install dependencies:
+### Prerequisites
 
+- Node.js 18+
+- Python 3.9+
+- npm
+- Docker (optional, for database)
+
+### Installation
+
+1. Install Node.js dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Configure environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+
+### Running the application
+
+#### Node.js Backend
 ```bash
-npm install
+npm run server:dev
 ```
+Defaults to http://localhost:3000
 
-2. Configure environment variables:
-
+#### Python Analytics API
 ```bash
-cp .env.example .env.local
+python main.py
 ```
+Defaults to http://localhost:8000
 
-3. Start the dev server:
-
+#### React Frontend
 ```bash
 npm start
 ```
-
-Open http://localhost:3000
-
-## Environment variables
-
-Create React App only exposes variables prefixed with `REACT_APP_`.
-
-| Variable | Required | Default | Description |
-|---|---:|---|---|
-| `REACT_APP_API_URL` | no | `http://localhost:8000/api` | Backend API base URL |
-| `REACT_APP_API_TIMEOUT` | no | `10000` | Axios request timeout (ms) |
-| `REACT_APP_TOKEN_KEY` | no | `auth_token` | localStorage key for persisted auth |
-| `REACT_APP_APP_NAME` | no | `MyApp` | Display name |
-| `REACT_APP_VERSION` | no | `1.0.0` | Display version |
+Defaults to http://localhost:3001
 
 ## Scripts
 
-- `npm start` - start dev server
-- `npm test` - run unit tests
-- `npm run build` - production build
+- `npm start` - Start frontend development server
+- `npm run server:dev` - Start Node.js backend development server
+- `npm run build` - Build frontend for production
+- `npm run server:build` - Build Node.js backend (TypeScript)
+- `npm test` - Run frontend tests
+- `npm run server:db:migrate` - Run Prisma migrations
 
-## API documentation
+## Authentication System
 
-See [`docs/API.md`](./docs/API.md) for the endpoints and payloads expected by the frontend.
+- **`/login`** - User login with email/password and "remember me" option
+- **`/signup`** - New user registration with validation
+- **`/forgot-password`** - Password reset interface (UI only)
 
-## Security notes
-
-- Do not commit `.env` / `.env.local` files with real secrets.
-- JWT expiration is checked locally (via `expiresAt` or JWT `exp`) and also handled on `401` responses.
-- React escapes rendered values by default; avoid using `dangerouslySetInnerHTML` with untrusted content.
+The following routes require authentication:
+- `/dashboard`
+- `/users`
+- `/settings`

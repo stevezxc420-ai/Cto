@@ -1,0 +1,77 @@
+### Health Check
+GET http://localhost:3000/health
+
+### Add Stripe Credential
+# Replace YOUR_STRIPE_KEY with your actual Stripe key (format: sk_test_... or sk_live_...)
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+
+{
+  "userId": "user123",
+  "provider": "stripe",
+  "apiKey": "YOUR_STRIPE_KEY_HERE",
+  "keyName": "Production Stripe Key"
+}
+
+### Add Twilio Credential
+# Replace YOUR_TWILIO_KEY with your actual Twilio key (format: SK... or AC...)
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+
+{
+  "userId": "user123",
+  "provider": "twilio",
+  "apiKey": "YOUR_TWILIO_KEY_HERE"
+}
+
+### Add SendGrid Credential
+# Replace YOUR_SENDGRID_KEY with your actual SendGrid key (format: SG....)
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+
+{
+  "userId": "user123",
+  "provider": "sendgrid",
+  "apiKey": "YOUR_SENDGRID_KEY_HERE"
+}
+
+### Add AWS Credential
+# Replace YOUR_AWS_KEY with your actual AWS access key (format: AKIA...)
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+
+{
+  "userId": "user123",
+  "provider": "aws",
+  "apiKey": "YOUR_AWS_ACCESS_KEY_HERE"
+}
+
+### Add Slack Credential
+# Replace YOUR_SLACK_TOKEN with your actual Slack token (format: xoxb-...)
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+
+{
+  "userId": "user123",
+  "provider": "slack",
+  "apiKey": "YOUR_SLACK_TOKEN_HERE"
+}
+
+### List all credentials for user
+GET http://localhost:3000/api/credentials/user123
+
+### Get specific credential
+GET http://localhost:3000/api/credentials/user123/credential-id-here
+
+### Delete credential
+DELETE http://localhost:3000/api/credentials/user123/credential-id-here
+
+### Test invalid API key format
+POST http://localhost:3000/api/credentials
+Content-Type: application/json
+
+{
+  "userId": "user123",
+  "provider": "stripe",
+  "apiKey": "invalid-key-format"
+}
